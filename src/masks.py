@@ -11,6 +11,7 @@ def foo(a: int | float, b: int | float) -> int | float:
     c = a * b
     return (a + b) * c
 
+
 def foo_2(a: int | float, b: int | float) -> int | float:
     """
 
