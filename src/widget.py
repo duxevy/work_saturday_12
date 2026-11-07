@@ -1,17 +1,25 @@
-from src.masks import foo, foo_2
+from datetime import datetime
+
+from src.masks import get_mask_account, get_mask_card_number
 
 
-def bar(x: int) -> list[int | float]:
-    """
+def mask_account_card(info_string: str) -> str:
+    """Принимает строку с типом и номером карты/счета и возвращает строку с замаскированным номером."""
+    parts = info_string.split()
 
-    Args:
-        x:
+    # Извлекаем номер (последний элемент) и название (все элементы до него)
+    number = parts[-1]
+    name = " ".join(parts[:-1])
 
-    Returns:
+    # Проверяем тип и применяем ваши функции маскировки
+    if name.lower() == "счет":
+        masked_number = get_mask_account(number)
+    else:
+        masked_number = get_mask_card_number(number)
 
-    """
-    y = foo(2, 3)
-    z = foo_2(10, 7)
+    return f"{name} {masked_number}"
 
-    _list = [y, z, (y * z) + x]
-    return _list
+
+def get_date(date_string: str) -> str:
+    """Принимает строку с датой в формате ISO и возвращает дату в формате ДД.ММ.ГГГГ."""
+    return datetime.fromisoformat(date_string).strftime("%d.%m.%Y")
