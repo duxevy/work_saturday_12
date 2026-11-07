@@ -1,26 +1,9 @@
-def foo(a: int | float, b: int | float) -> int | float:
-    """
-
-    Args:
-        a:
-        b:
-
-    Returns:
-
-    """
-    c = a * b
-    return (a + b) * c
+def get_mask_card_number(card_number: str) -> str:
+    """Принимает номер карты и возвращает его маску в формате XXXX XX** **** XXXX."""
+    card_number = card_number.replace(" ", "")
+    return f"{card_number[:4]} {card_number[4:6]}** **** {card_number[-4:]}"
 
 
-def foo_2(a: int | float, b: int | float) -> int | float:
-    """
-
-    Args:
-        a:
-        b:
-
-    Returns:
-
-    """
-    c = a * b
-    return (a - b) * c
+def get_mask_account(account_number: str) -> str:
+    """Принимает номер счета и возвращает его маску в формате **XXXX."""
+    return f"**{account_number[-4:]}"
